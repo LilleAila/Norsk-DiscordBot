@@ -18,20 +18,14 @@ client.once(Events.ClientReady, (c) => {
   console.log(`Ready! Logged in as ${c.user.tag}`);
 });
 
-const endSymbols = "!.?:"
+// |(?:`[^`\r\n]+`[\ \t]*)|(?:`{3}[^`\r\n]+`{3}[\ \t]*)+
+// const oldRegex = /^\ *(?:[A-Z0-9ÆØÅ:].*[!?.:]|<@[0-9]+>|https?:\/\/|@[a-zA-Z0-9]+)\ *$/gm
+const testRegex = /^[\ \t]*(?:(?:[\ \t]*[A-Z0-9ÆØÅ:][^?!.\r\n]*[?!.])+|<@[0-9]+>[^?!.\r\n]*[?!.](?:[\ \t]*[A-Z0-9ÆØÅ:][^?!.\r\n]*[?!.])*|https?:\/\/[^\r\n.]+\.[^?!.\r\n]+[?!.]?(?:[\ \t]*[A-Z0-9ÆØÅ:][^?!.\r\n]*[?!.])*|@[A-Za-z0-9]+[^?!.\r\n]*[?!.](?:[\ \t]*[A-Z0-9ÆØÅ:][^?!.\r\n]*[?!.])*|(?::[^:\r\n]+:[\ \t]*)+|(?:`[^`\r\n]+`[\ \t]*)|(?:`{3}[^`\r\n]+`{3}[\ \t]*)+)[\ \t]*$/gm
 
 client.on(Events.MessageCreate, (message) => {
-	if(message.author.bot) return;
-	console.log(message.content);
-    // console.log(message.content)
-	// if(message.content == "ping") {
-	// 	message.reply("pong")
-	// }
-	// const content = message.content.trim();
-	// console.log(content)
-	// if(content.slice(0, 4) == "http" || content.match(/<@[0-9]*>/g)) return;
-	// if(content[0] == content[0].toUpperCase() && endSymbols.includes(content[content.length-1])) return;
-	if(message.content.match(/^\ *(?:[A-Z0-9].*[!?.:]|<@[0-9]+>|https?:\/\/|@[a-zA-Z]+)\ *$/gm)) return;
+	if(message.author.bot || message.content.length < 1) return;
+	// console.log(message.content);
+	if(message.content.match(testRegex)) return;
 	message.reply(msg);
 });
 
