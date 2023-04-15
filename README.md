@@ -1,6 +1,21 @@
 # Discord Norsk bot
 
-## Invite link:
+## Install and run:
+
+Install node modules:
+```
+npm install
+```
+
+Configure bot with message to send and bot token in `config.json`:
+```
+{
+    "token": "BOT-TOKEN",
+    "msg": "MESSAGE-TO-SEND"
+}
+```
+
+## Invite link (You will have to put your own bot's Client ID):
 Permissions: 274877975552
 Client ID: 1096700800270602271
 Scope: bot
