@@ -31,7 +31,7 @@ client.on(Events.MessageCreate, (message) => {
 	// console.log(content)
 	// if(content.slice(0, 4) == "http" || content.match(/<@[0-9]*>/g)) return;
 	// if(content[0] == content[0].toUpperCase() && endSymbols.includes(content[content.length-1])) return;
-	if(message.content.match(/^\ *(?:[A-Z0-9].*[!?.:]|<@[0-9]+>|https?:\/\/)\ */gm)) return;
+	if(message.content.match(/^\ *(?:[A-Z0-9].*[!?.:]|<@[0-9]+>|https?:\/\/|@[a-zA-Z]+)\ */gm)) return;
 	message.reply(msg);
 });
 
